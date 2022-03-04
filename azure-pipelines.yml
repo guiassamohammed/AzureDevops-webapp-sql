@@ -1,0 +1,33 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger: 'none'
+
+Pool:
+  vmImage: 'windows-2019'
+    
+variables:
+  BuildConfiguration: release
+  
+steps:
+
+- task: UseDotNet@2
+  displayName: Install .NET 6 sdk
+  inputs:
+    packageType: sdk
+    version: 6.0.x
+    installationPath: $(Agent.ToolsDirectory)/dotnet
+
+- task: DotNetCoreCLI@2
+  displayName: Restore Nuget Packages
+  inputs:
+    command: restore
+    projects: '**/WebApp.csproj'
+
+- task: DotNetCoreCLI@2
+  displayName: Build Web App
+  inputs:
+    projects: '**/WebApp.csproj'
+    arguments: '--configuration $(BuildConfiguration)'
