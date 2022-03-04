@@ -5,7 +5,7 @@
 
 trigger: 'none'
 
-Pool:
+pool:
   vmImage: 'windows-2019'
     
 variables:
