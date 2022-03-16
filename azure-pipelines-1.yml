@@ -9,7 +9,7 @@ trigger: 'none'
 stages:
 - stage: build the app 
   jobs:
-  - job: build the .net app
+  - job: build the dot net app
     pool:
       vmImage: windows-latest
 
