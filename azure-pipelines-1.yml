@@ -21,24 +21,28 @@ stages:
         version: '6.0.x'
         installationPath: $(Agent.ToolsDirectory)/dotnet
     - task: DotNetCoreCLI@2
+      displayName: restore the app
       inputs:
         command: 'restore'
         projects: '**/WebApp.csproj'
 
 
     - task: DotNetCoreCLI@2
+      displayName: build the app 
       inputs:
          command: 'build'
          projects: '**/WebApp.csproj'
          arguments: '--configuration $(BuildConfiguration)'
 
     - task: DotNetCoreCLI@2
+      displayName: do the test
       inputs:
          command: 'test'
          projects: '! **/*UnitTest*.csproj'
          arguments: '--configuration $(BuildConfiguration)'
                 
     - task: DotNetCoreCLI@2
+      displayName: publish the app
       inputs:
          command: 'publish'
          publishWebProjects: true
