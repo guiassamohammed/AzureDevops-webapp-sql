@@ -7,7 +7,7 @@ trigger: 'none'
 
 
 stages:
-- stage: build the app 
+- stage: build
   jobs:
   - job: build 
     pool:
