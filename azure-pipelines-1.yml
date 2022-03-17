@@ -78,7 +78,7 @@ stages:
         azureSubscription: 'MOGUIA(0140fa3e-3836-4df1-ad41-12987b3c3243)'
         appType: 'webApp'
         WebAppName: 'appservicemo15'
-        Package: '$(System.ArtifactsDirectory)'
+        packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
  
     
         
