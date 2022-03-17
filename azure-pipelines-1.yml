@@ -41,11 +41,6 @@ stages:
          projects: '! **/*UnitTest*.csproj'
          arguments: '--configuration $(BuildConfiguration)'
          
-    - task: PublishBuildArtifacts@1
-      inputs:
-        PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-        ArtifactName: 'drop'
-        publishLocation: 'Container'
                 
     - task: DotNetCoreCLI@2
       displayName: publish the app
@@ -53,6 +48,12 @@ stages:
          command: 'publish'
          publishWebProjects: true
          arguments: '--configuration $(BuildConfiguration)'
+         
+    - task: PublishBuildArtifacts@1
+      inputs:
+        PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+        ArtifactName: 'drop'
+        publishLocation: 'Container'
 
 - stage: deploy 
   displayName: deploy to the web app 
@@ -68,7 +69,7 @@ stages:
         azureSubscription: 'MOGUIA(0140fa3e-3836-4df1-ad41-12987b3c3243)'
         appType: 'webApp'
         WebAppName: 'appservicemo15'
-        packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
+        Package: '$(Build.ArtifactStagingDirectory)'
  
     
         
