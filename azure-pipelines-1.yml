@@ -43,18 +43,17 @@ stages:
          
                 
     - task: DotNetCoreCLI@2
-      displayName: publish the app
       inputs:
-         command: 'publish'
-         publishWebProjects: true
-         arguments: '--configuration $(BuildConfiguration)'
+       command: 'publish'
+       publishWebProjects: true
+       arguments: '--configuration $(BuildConfiguration) -output $(build.artifactstagingdirectory)'
+       zipAfterPublish: True
          
     - task: PublishBuildArtifacts@1
-      displayName:  publish the app
       inputs:
-        PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-        ArtifactName: 'drop'
-        publishLocation: 'Container'
+       PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+       
+
 
 - stage: deploy 
   displayName: deploy to the web app 
