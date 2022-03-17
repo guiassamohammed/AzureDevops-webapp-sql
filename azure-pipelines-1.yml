@@ -63,13 +63,22 @@ stages:
     pool:
       vmImage: windows-latest
     steps: 
+
+
+    - task: DownloadBuildArtifacts@1
+      inputs:
+         buildType: 'current'
+         downloadType: 'single'
+         artifactName: 'mo'
+         downloadPath: '$(System.ArtifactsDirectory)'
+
     - task: AzureRmWebAppDeployment@4
       inputs:
         ConnectionType: 'AzureRM'
         azureSubscription: 'MOGUIA(0140fa3e-3836-4df1-ad41-12987b3c3243)'
         appType: 'webApp'
         WebAppName: 'appservicemo15'
-        Package: '$(Build.ArtifactStagingDirectory)'
+        Package: '$(System.ArtifactsDirectory)'
  
     
         
