@@ -76,8 +76,9 @@ stages:
       inputs:
          buildType: 'current'
          downloadType: 'single'
-         artifactName: 'mo'
+         artifactName: 'drop'
          downloadPath: '$(System.ArtifactsDirectory)'
+         
 
     - task: AzureRmWebAppDeployment@4
       inputs:
