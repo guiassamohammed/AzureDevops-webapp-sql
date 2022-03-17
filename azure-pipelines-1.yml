@@ -59,8 +59,20 @@ stages:
       displayName: put it in the artifact
       inputs:
        PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-       
+    
+    
+    - task: MSBuild@1
+      displayName: database build 
+      inputs:
+           solution: '**/WebApp.Database.sqlproj'
+           msbuildArguments: 'Build.ArtifactStagingDirectory'
 
+    - task: PublishBuildArtifacts@1
+      displayName: publish the database artifact
+      inputs:
+          PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+          ArtifactName: 'dacpac'
+          publishLocation: 'Container'
 
 - stage: deploy 
   displayName: deploy to the web app 
@@ -87,7 +99,15 @@ stages:
         appType: 'webApp'
         WebAppName: 'appservicemo15'
         packageForLinux: '$(System.ArtifactsDirectory)'
- 
+        
+        
+    - task: DownloadBuildArtifacts@1
+      displayName:  download the dacpac 
+      inputs:
+            buildType: 'current'
+            downloadType: 'single'
+            artifactName: 'dacpac'
+            downloadPath: '$(System.ArtifactsDirectory)'
     
         
 
