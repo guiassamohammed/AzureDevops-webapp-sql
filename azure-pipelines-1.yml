@@ -79,14 +79,14 @@ stages:
          artifactName: 'drop'
          downloadPath: '$(System.ArtifactsDirectory)'
          
-
+     
     - task: AzureRmWebAppDeployment@4
       inputs:
         ConnectionType: 'AzureRM'
         azureSubscription: 'MOGUIA(0140fa3e-3836-4df1-ad41-12987b3c3243)'
         appType: 'webApp'
         WebAppName: 'appservicemo15'
-        packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
+        packageForLinux: '$(System.ArtifactsDirectory)'
  
     
         
