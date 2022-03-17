@@ -43,14 +43,17 @@ stages:
          
     - task: DotNetCoreCLI@2
       inputs:
-         command: 'publish'
-         publishWebProjects: true
-         arguments: '--configuration $(BuildConfiguration) )'
-          
+          command: 'publish'
+          publishWebProjects: true
+          arguments: '--configuration $(BuildConfiguration)'
+        
+         
+    
     - task: CopyFiles@2
       displayName: copy to the artifact
       inputs:
        targetFolder: $(Build.ArtifactStagingDirectory)
+       
          
     - task: PublishBuildArtifacts@1
       displayName: put it in the artifact
