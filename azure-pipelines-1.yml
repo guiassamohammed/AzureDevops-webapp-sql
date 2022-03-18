@@ -69,13 +69,9 @@ stages:
     - task: MSBuild@1
       inputs:
         solution: WebApp.Database/WebApp.Database.sqlproj
-        msbuildArguments: '--configuration $(BuildConfiguration)'
+        msbuildArguments: '/p:OutDir=$(Build.ArtifactStagingDirectory)'
 
-    - task: CopyFiles@2
-      displayName: copy to databse to the artifact
-      inputs:
-       targetFolder: $(Build.ArtifactStagingDirectory)
-
+    
     - task: PublishBuildArtifacts@1
       displayName: publish the database artifact
       inputs:
