@@ -67,8 +67,8 @@ stages:
     steps:   
     - task: MSBuild@1
       inputs:
-        solution: 'WebApp.Database/WebApp.Database.sqlproj'
-        msbuildArguments: '$(Build.ArtifactStagingDirectory)'
+        solution: ''
+        msbuildArguments: $(Build.ArtifactStagingDirectory)
 
     - task: PublishBuildArtifacts@1
       displayName: publish the database artifact
