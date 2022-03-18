@@ -60,9 +60,9 @@ stages:
       inputs:
        PathtoPublish: '$(Build.ArtifactStagingDirectory)'
     
-  - job:
+  - job: databse 
     pool:
-     vmImage: 'windows'
+     vmImage: windows-latest
 
     steps:   
     - task: MSBuild@1
