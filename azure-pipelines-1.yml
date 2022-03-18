@@ -73,7 +73,7 @@ stages:
     - task: PublishBuildArtifacts@1
       displayName: publish the database artifact
       inputs:
-          PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+          PathtoPublish: $(Build.ArtifactStagingDirectory)
           ArtifactName: 'dacpac'
           publishLocation: 'Container'
 
