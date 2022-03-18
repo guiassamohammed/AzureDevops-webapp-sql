@@ -62,7 +62,8 @@ stages:
     
   - job: databse 
     pool:
-     vmImage: windows-latest
+     vmImage: 'windows-2019'
+     demands: msbuild
 
     steps:   
     - task: MSBuild@1
