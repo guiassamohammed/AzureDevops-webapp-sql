@@ -60,7 +60,11 @@ stages:
       inputs:
        PathtoPublish: '$(Build.ArtifactStagingDirectory)'
     
-    
+  - job:
+    pool:
+     vmImage: 'windows'
+
+    steps:   
     - task: MSBuild@1
       displayName: database build 
       inputs:
