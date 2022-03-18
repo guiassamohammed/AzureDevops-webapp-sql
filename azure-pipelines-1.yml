@@ -69,7 +69,7 @@ stages:
     - task: MSBuild@1
       inputs:
         solution: WebApp.Database/WebApp.Database.sqlproj
-        msbuildArguments: '--configuration $(BuildConfiguration)'
+        msbuildArguments: --configuration $(BuildConfiguration)
 
     - task: CopyFiles@2
       displayName: copy to databse to the artifact
