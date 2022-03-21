@@ -125,6 +125,6 @@ stages:
         ConnectionString: '$(nn)'
         deployType: 'DacpacTask'
         DeploymentAction: 'Publish'
-        DacpacFile: '$(System.ArtifactsDirectory)'
+        DacpacFile: '$(System.ArtifactsDirectory)/dacpac/**.Database.dacpac'
         IpDetectionMethod: 'AutoDetect'
 
