@@ -38,7 +38,7 @@ stages:
       displayName: do the test
       inputs:
          command: 'test'
-         projects: '! **/*UnitTest*.csproj'
+         projects: ' **/*UnitTest*.csproj'
          arguments: '--configuration $(BuildConfiguration)'
          
     - task: DotNetCoreCLI@2
@@ -117,5 +117,13 @@ stages:
         
 
 
-
+    - task: SqlAzureDacpacDeployment@1
+      inputs:
+        azureSubscription: 'MOGUIA(0140fa3e-3836-4df1-ad41-12987b3c3243)'
+        AuthenticationType: 'connectionString'
+        ConnectionString: '$(Connectionstring)'
+        deployType: 'DacpacTask'
+        DeploymentAction: 'Publish'
+        DacpacFile: '$(System.ArtifactsDirectory)'
+        IpDetectionMethod: 'AutoDetect'
 
