@@ -118,6 +118,7 @@ stages:
 
 
     - task: SqlAzureDacpacDeployment@1
+      displayName: put the dacpack file on the database
       inputs:
         azureSubscription: 'MOGUIA(0140fa3e-3836-4df1-ad41-12987b3c3243)'
         AuthenticationType: 'connectionString'
