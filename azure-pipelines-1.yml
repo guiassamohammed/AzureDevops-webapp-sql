@@ -33,6 +33,14 @@ stages:
          command: 'build'
          projects: '**/WebApp.csproj'
          arguments: '--configuration $(BuildConfiguration)'
+    - task: SonarCloudPrepare@1
+      displayName: prepare anlysis sonarcloud
+      inputs:
+        SonarCloud: 'mo'
+        organization: 'ks-webappwithdatabasedemo'
+        scannerMode: 'MSBuild'
+        projectKey: 'KS-WebAppWithDatabaseDemo_WebAppWithDatabaseDemo'
+        projectName: 'WebAppWithDatabaseDemo'
 
     - task: DotNetCoreCLI@2
       displayName: do the test
@@ -47,7 +55,12 @@ stages:
           publishWebProjects: true
           arguments: '--configuration $(BuildConfiguration)'
         
-         
+    - task: SonarCloudAnalyze@1
+      displayName: run code anlysis 
+
+    - task: SonarCloudPublish@1
+      inputs:
+          pollingTimeoutSec: '300'   
     
     - task: CopyFiles@2
       displayName: copy to the artifact
@@ -59,6 +72,7 @@ stages:
       displayName: put it in the artifact
       inputs:
        PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    
     
   - job: databse 
     pool:
