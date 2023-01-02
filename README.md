@@ -1,6 +1,6 @@
 # AzureDevops-webapp-sql
 
-**Project purpose: **
+**Project purpose:**
 
 Trigger  Azure Devops  CI/CD pipeline to build test and deploy  a .Net app to a web server in azure. 
 
